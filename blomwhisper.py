@@ -15,6 +15,7 @@ from werkzeug.utils import secure_filename, redirect
 
 ## apt-get install python-pip python-pygame python-dev
 ## pip install flask
+## echo "export PULSE_LATENCY_MSEC=60" >> /etc/profile
 
 app = Flask(__name__)
 configfilename = "whisper.conf"
@@ -118,6 +119,7 @@ def soundThread(spEvent):
 def dingerThread(spEvent):
     ## Added time sleep so the sound thread is done setting up
     logger.error("Dinger thread is starting")
+    time.sleep(3)
     while True:
         if datetime.datetime.now() > nexttime:
             logger.info("Time was dinged! Let's rock!")
@@ -223,7 +225,7 @@ if __name__ == '__main__':
 
     app.config['UPLOAD_FOLDER'] = sounddir
     logger.error("Starting app complete")
-    app.run(debug=debug,host="0.0.0.0",port=80)
+    app.run(debug=False,host="0.0.0.0",port=80)
 
 
 
