@@ -13,6 +13,9 @@ import pygame
 import datetime
 from werkzeug.utils import secure_filename, redirect
 
+## apt-get install python-pip python-pygame python-dev
+## pip install flask
+
 app = Flask(__name__)
 configfilename = "whisper.conf"
 configfile = (os.path.join(os.getcwd(), configfilename))
@@ -220,7 +223,7 @@ if __name__ == '__main__':
 
     app.config['UPLOAD_FOLDER'] = sounddir
     logger.error("Starting app complete")
-    app.run(debug=debug)
+    app.run(debug=debug,host="0.0.0.0",port=80)
 
 
 
